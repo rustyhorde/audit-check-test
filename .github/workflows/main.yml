@@ -1,0 +1,11 @@
+on: [push]
+
+jobs:
+  audit-check:
+    runs-on: ubuntu-latest
+    name: 💣 Audit 💣
+    steps:
+      - name: 💣 Audit 💣
+        uses: rustyhorde/audit-check
+        with:
+          deny: 'warning'
