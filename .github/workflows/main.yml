@@ -6,6 +6,7 @@ jobs:
     name: 💣 Audit 💣
     steps:
       - name: 💣 Audit 💣
+        id: audit
         uses: rustyhorde/audit-check
         with:
           deny: 'warning'
