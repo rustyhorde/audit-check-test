@@ -14,3 +14,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           deny: 'warnings'
+          create_issue: 'true'
