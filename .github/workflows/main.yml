@@ -1,5 +1,7 @@
 on: [push]
 
+name: 💣 Audit 💣
+
 jobs:
   audit-check:
     runs-on: ubuntu-latest
