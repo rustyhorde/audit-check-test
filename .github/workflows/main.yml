@@ -12,4 +12,5 @@ jobs:
         id: audit
         uses: rustyhorde/audit-check@v1
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           deny: 'warnings'
