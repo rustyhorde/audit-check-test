@@ -6,6 +6,8 @@ jobs:
   audit-check:
     runs-on: ubuntu-latest
     name: 💣 Audit 💣
+    permissions:
+      issues: write 
     steps:
       - uses: actions/checkout@v3
       - name: 💣 Audit 💣
