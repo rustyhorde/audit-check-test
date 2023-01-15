@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 anymap = "0.12.1"
+aovec = "1.1.0"
