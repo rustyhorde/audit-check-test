@@ -6,10 +6,19 @@ jobs:
   audit-check:
     runs-on: ubuntu-latest
     name: 💣 Audit 💣
-    permissions:
-      issues: write 
     steps:
-      - uses: actions/checkout@v3
+      - name: ✅ Checkout ✅
+        uses: actions/checkout@v3
+      - name: 💵 Cache 💵
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-${{ matrix.rust }}-${{ hashFiles('**/Cargo.lock', '**/main.yml') }}
       - name: 💣 Audit 💣
         id: audit
         uses: rustyhorde/audit-check@v1
