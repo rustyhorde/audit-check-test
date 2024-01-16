@@ -1,4 +1,24 @@
-on: [push]
+on:
+  # Trigger the workflow on push to master or any pull request
+  # Ignore all tags
+  push:
+    branches:
+      - master
+    tags-ignore: 
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: "23 3 * * *"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
 name: 💣 Audit 💣
 
@@ -9,16 +29,6 @@ jobs:
     steps:
       - name: ✅ Checkout ✅
         uses: actions/checkout@v3
-      - name: 💵 Cache 💵
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: ${{ runner.os }}-${{ matrix.rust }}-${{ hashFiles('**/Cargo.lock', '**/main.yml') }}
       - name: 💣 Audit 💣
         id: audit
         uses: rustyhorde/audit-check@v1
